@@ -116,6 +116,8 @@ function HomePage() {
           <Pagination
             currentPage={currentPage}
             totalPages={totalPages}
+            currentItemCount={paginatedPosts.length}
+            totalItems={filteredPosts.length}
             onPreviousPage={handlePreviousPage}
             onNextPage={handleNextPage}
           />

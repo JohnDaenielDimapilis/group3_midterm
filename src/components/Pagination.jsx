@@ -1,6 +1,8 @@
 function Pagination({
   currentPage,
   totalPages,
+  currentItemCount,
+  totalItems,
   onPreviousPage,
   onNextPage,
 }) {
@@ -16,6 +18,10 @@ function Pagination({
       </button>
       <p className="pagination-status">
         Page <span>{currentPage}</span> of <span>{totalPages}</span>
+        <br />
+        <span className="pagination-count">
+          Showing {currentItemCount} of {totalItems} posts
+        </span>
       </p>
       <button
         className="pagination-button"
