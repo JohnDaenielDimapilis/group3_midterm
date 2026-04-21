@@ -4,12 +4,10 @@ function AppShell() {
   return (
     <div className="app-shell">
       <header className="topbar">
-        <div className="brand-block">
-          <p className="eyebrow">Group 3 Midterm Project</p>
-          <NavLink className="brand-link" to="/">
-            Post Explorer
-          </NavLink>
-        </div>
+        <NavLink className="brand-link" to="/">
+          <span className="brand-mark">P</span>
+          <span className="brand-text">PostIT</span>
+        </NavLink>
         <nav className="topbar-nav" aria-label="Primary">
           <NavLink
             className={({ isActive }) =>
@@ -18,6 +16,14 @@ function AppShell() {
             to="/"
           >
             Home
+          </NavLink>
+          <NavLink
+            className={({ isActive }) =>
+              isActive ? 'nav-link nav-link-active' : 'nav-link'
+            }
+            to="/create"
+          >
+            Create Post
           </NavLink>
         </nav>
       </header>

@@ -77,12 +77,12 @@ function HomePage() {
     <section className="home-page">
       <section className="hero-panel">
         <div>
-          <p className="section-label">RTK Query + React Router</p>
-          <h1>Browse public posts with fast filtering and clear navigation</h1>
+          <p className="section-label">IT vlog platform</p>
+          <h1>PostIT keeps tech stories clean, readable, and easy to browse</h1>
         </div>
         <p className="hero-copy">
-          This midterm project uses Redux Toolkit Query to fetch a list of posts
-          and individual post details from JSONPlaceholder.
+          Discover concise posts about development, tooling, and digital
+          workflows in a modern interface built for fast scanning.
         </p>
       </section>
 
@@ -95,15 +95,15 @@ function HomePage() {
       <div className="results-header">
         <p>
           Showing <span>{paginatedPosts.length}</span> of{' '}
-          <span>{filteredPosts.length}</span> filtered posts
+          <span>{filteredPosts.length}</span> posts
         </p>
-        {isFetching && <span className="refresh-pill">Refreshing data...</span>}
+        {isFetching && <span className="refresh-pill">Refreshing posts...</span>}
       </div>
 
       {filteredPosts.length === 0 ? (
         <FeedbackMessage
           title="No posts found"
-          message="Try another keyword. Search checks both the post title and body without case sensitivity."
+          message="Try another keyword. The search is case-insensitive and checks both the post title and description."
         />
       ) : (
         <>

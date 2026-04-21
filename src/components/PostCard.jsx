@@ -1,15 +1,31 @@
 import { Link } from 'react-router-dom'
+import { getAuthorName, getPostTags, getPublishDate } from '../utils/postMeta'
 
 function PostCard({ post }) {
+  const tags = getPostTags(post)
+
   return (
     <article className="post-card">
       <div className="post-card-top">
-        <span className="post-meta">Post #{post.id}</span>
-        <span className="post-meta">Author {post.userId}</span>
+        <div>
+          <p className="card-date">{getPublishDate(post.id)}</p>
+          <h2>{post.title}</h2>
+        </div>
+        <span className="post-id">#{post.id}</span>
       </div>
 
-      <h2>{post.title}</h2>
       <p>{post.body}</p>
+
+      <div className="card-footer">
+        <p className="card-author">{getAuthorName(post.userId)}</p>
+        <div className="tag-list">
+          {tags.map((tag) => (
+            <span key={tag} className="tag-pill">
+              {tag}
+            </span>
+          ))}
+        </div>
+      </div>
 
       <Link className="card-link" to={`/item/${post.id}`}>
         View details
