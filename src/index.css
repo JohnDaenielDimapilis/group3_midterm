@@ -483,6 +483,12 @@ button {
   white-space: pre-line;
 }
 
+.story-block {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
 .create-form {
   gap: 1rem;
 }

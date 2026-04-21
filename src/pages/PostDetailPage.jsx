@@ -1,7 +1,12 @@
 import { Link, useParams } from 'react-router-dom'
 import FeedbackMessage from '../components/FeedbackMessage'
 import { useGetPostByIdQuery } from '../features/posts/postsApi'
-import { getAuthorName, getPostTags, getPublishDate } from '../utils/postMeta'
+import {
+  getAuthorName,
+  getPostStory,
+  getPostTags,
+  getPublishDate,
+} from '../utils/postMeta'
 
 function PostDetailPage() {
   const { id } = useParams()
@@ -60,7 +65,11 @@ function PostDetailPage() {
             </span>
           ))}
         </div>
-        <p>{post.body}</p>
+        <div className="story-block">
+          {getPostStory(post).map((paragraph) => (
+            <p key={paragraph}>{paragraph}</p>
+          ))}
+        </div>
       </article>
     </section>
   )

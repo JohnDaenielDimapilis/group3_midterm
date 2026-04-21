@@ -1,5 +1,10 @@
 import { Link } from 'react-router-dom'
-import { getAuthorName, getPostTags, getPublishDate } from '../utils/postMeta'
+import {
+  getAuthorName,
+  getPostTags,
+  getPublishDate,
+  getStoryPreview,
+} from '../utils/postMeta'
 
 function PostCard({ post }) {
   const tags = getPostTags(post)
@@ -14,7 +19,7 @@ function PostCard({ post }) {
         <span className="post-id">#{post.id}</span>
       </div>
 
-      <p>{post.body}</p>
+      <p>{getStoryPreview(post)}</p>
 
       <div className="card-footer">
         <p className="card-author">{getAuthorName(post.userId)}</p>
