@@ -1,6 +1,7 @@
 import { Link } from 'react-router-dom'
 import {
   getAuthorName,
+  getPostDisplayTitle,
   getPostTags,
   getPublishDate,
   getStoryPreview,
@@ -14,7 +15,7 @@ function PostCard({ post }) {
       <div className="post-card-top">
         <div>
           <p className="card-date">{getPublishDate(post.id)}</p>
-          <h2>{post.title}</h2>
+          <h2>{getPostDisplayTitle(post)}</h2>
         </div>
         <span className="post-id">#{post.id}</span>
       </div>

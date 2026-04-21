@@ -5,6 +5,7 @@ import PostCard from '../components/PostCard'
 import SearchBar from '../components/SearchBar'
 import { POSTS_PER_PAGE } from '../data/constants'
 import { useGetPostsQuery } from '../features/posts/postsApi'
+import { getPostDisplayTitle, getStoryPreview } from '../utils/postMeta'
 
 function HomePage() {
   const [searchValue, setSearchValue] = useState('')
@@ -22,7 +23,8 @@ function HomePage() {
 
     return posts.filter(
       (post) =>
-        post.title.toLowerCase().includes(normalizedSearch) ||
+        getPostDisplayTitle(post).toLowerCase().includes(normalizedSearch) ||
+        getStoryPreview(post).toLowerCase().includes(normalizedSearch) ||
         post.body.toLowerCase().includes(normalizedSearch),
     )
   }, [posts, searchValue])

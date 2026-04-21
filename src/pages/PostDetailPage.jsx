@@ -3,6 +3,7 @@ import FeedbackMessage from '../components/FeedbackMessage'
 import { useGetPostByIdQuery } from '../features/posts/postsApi'
 import {
   getAuthorName,
+  getPostDisplayTitle,
   getPostStory,
   getPostTags,
   getPublishDate,
@@ -57,7 +58,7 @@ function PostDetailPage() {
           <span className="post-meta">{getPublishDate(post.id)}</span>
           <span className="post-meta">{getAuthorName(post.userId)}</span>
         </div>
-        <h1>{post.title}</h1>
+        <h1>{getPostDisplayTitle(post)}</h1>
         <div className="tag-list">
           {getPostTags(post).map((tag) => (
             <span key={tag} className="tag-pill">
