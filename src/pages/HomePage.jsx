@@ -52,6 +52,10 @@ function HomePage() {
     )
   }
 
+  const handleSelectPage = (pageNumber) => {
+    setCurrentPage(pageNumber)
+  }
+
   if (isLoading) {
     return (
       <FeedbackMessage
@@ -120,6 +124,7 @@ function HomePage() {
             totalPages={totalPages}
             currentItemCount={paginatedPosts.length}
             totalItems={filteredPosts.length}
+            onSelectPage={handleSelectPage}
             onPreviousPage={handlePreviousPage}
             onNextPage={handleNextPage}
           />
