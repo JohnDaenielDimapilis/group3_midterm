@@ -1,4 +1,5 @@
 import { Link } from 'react-router-dom'
+import { usePostEngagement } from '../hooks/usePostEngagement'
 import {
   getAuthorName,
   getPostDisplayTitle,
@@ -9,6 +10,7 @@ import {
 
 function PostCard({ post }) {
   const tags = getPostTags(post)
+  const { likes, commentsCount } = usePostEngagement(post.id)
 
   return (
     <article className="post-card">
@@ -31,6 +33,11 @@ function PostCard({ post }) {
             </span>
           ))}
         </div>
+      </div>
+
+      <div className="engagement-row">
+        <span className="engagement-pill">{likes} likes</span>
+        <span className="engagement-pill">{commentsCount} comments</span>
       </div>
 
       <Link className="card-link" to={`/item/${post.id}`}>

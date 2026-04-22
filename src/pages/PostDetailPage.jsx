@@ -1,6 +1,8 @@
 import { Link, useParams } from 'react-router-dom'
+import { useState } from 'react'
 import FeedbackMessage from '../components/FeedbackMessage'
 import { useGetPostByIdQuery } from '../features/posts/postsApi'
+import { usePostEngagement } from '../hooks/usePostEngagement'
 import {
   getAuthorName,
   getPostDisplayTitle,
@@ -12,6 +14,10 @@ import {
 function PostDetailPage() {
   const { id } = useParams()
   const { data: post, error, isError, isLoading } = useGetPostByIdQuery(id)
+  const [commentValue, setCommentValue] = useState('')
+  const [commentMessage, setCommentMessage] = useState('')
+  const { liked, likes, comments, commentsCount, toggleLike, addComment } =
+    usePostEngagement(id)
 
   if (isLoading) {
     return (
@@ -45,6 +51,20 @@ function PostDetailPage() {
     )
   }
 
+  const handleCommentSubmit = (event) => {
+    event.preventDefault()
+
+    const wasAdded = addComment(commentValue)
+
+    if (!wasAdded) {
+      setCommentMessage('Please write a comment before submitting.')
+      return
+    }
+
+    setCommentValue('')
+    setCommentMessage('Comment added successfully.')
+  }
+
   return (
     <section className="detail-page">
       <div className="detail-actions">
@@ -71,7 +91,61 @@ function PostDetailPage() {
             <p key={paragraph}>{paragraph}</p>
           ))}
         </div>
+
+        <div className="interaction-bar">
+          <button
+            className={liked ? 'like-button like-button-active' : 'like-button'}
+            onClick={toggleLike}
+            type="button"
+          >
+            {liked ? 'Liked' : 'Like'} · {likes}
+          </button>
+          <span className="interaction-meta">{commentsCount} comments</span>
+        </div>
       </article>
+
+      <section className="comment-card">
+        <div className="comment-header">
+          <div>
+            <p className="section-label">Conversation</p>
+            <h2>Comments</h2>
+          </div>
+        </div>
+
+        <form className="comment-form" onSubmit={handleCommentSubmit}>
+          <label className="form-field" htmlFor="comment">
+            Add a comment
+            <textarea
+              id="comment"
+              name="comment"
+              placeholder="Share your thoughts about this post"
+              rows="4"
+              value={commentValue}
+              onChange={(event) => setCommentValue(event.target.value)}
+            />
+          </label>
+          <button className="primary-button" type="submit">
+            Post Comment
+          </button>
+          {commentMessage ? (
+            <p className="form-success" aria-live="polite">
+              {commentMessage}
+            </p>
+          ) : null}
+        </form>
+
+        <div className="comment-list">
+          {comments.map((comment) => (
+            <article key={comment.id} className="comment-item">
+              <div className="comment-meta">
+                <strong>{comment.author}</strong>
+                <span>{comment.createdAt}</span>
+              </div>
+              <p>{comment.content}</p>
+            </article>
+          ))}
+        </div>
+      </section>
     </section>
   )
 }

@@ -383,6 +383,25 @@ button {
   font-size: 0.83rem;
 }
 
+.engagement-row,
+.interaction-bar,
+.comment-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  align-items: center;
+}
+
+.engagement-pill,
+.interaction-meta {
+  padding: 0.42rem 0.78rem;
+  border-radius: 999px;
+  background: rgba(56, 189, 248, 0.1);
+  color: var(--text-muted);
+  font-size: 0.84rem;
+  font-weight: 600;
+}
+
 .card-link,
 .back-link,
 .primary-button {
@@ -410,6 +429,24 @@ button {
   background: linear-gradient(135deg, var(--accent), var(--accent-strong));
   color: #020617;
   box-shadow: 0 14px 28px rgba(56, 189, 248, 0.24);
+}
+
+.like-button {
+  padding: 0.85rem 1rem;
+  border-radius: 14px;
+  background: rgba(248, 113, 113, 0.12);
+  color: #fecaca;
+  font-weight: 700;
+}
+
+.like-button-active {
+  background: rgba(248, 113, 113, 0.22);
+  color: #fff1f2;
+  box-shadow: 0 14px 28px rgba(248, 113, 113, 0.14);
+}
+
+.like-button:hover {
+  transform: translateY(-2px);
 }
 
 .pagination-panel {
@@ -490,7 +527,8 @@ button {
 .feedback-card,
 .page-intro,
 .detail-card,
-.create-form {
+.create-form,
+.comment-card {
   border-radius: 24px;
   padding: clamp(1.5rem, 4vw, 2.5rem);
 }
@@ -504,7 +542,8 @@ button {
 }
 
 .detail-card,
-.create-form {
+.create-form,
+.comment-card {
   display: flex;
   flex-direction: column;
   gap: 1.2rem;
@@ -525,6 +564,45 @@ button {
   display: flex;
   flex-direction: column;
   gap: 1rem;
+}
+
+.comment-card {
+  background: var(--surface);
+  border: 1px solid var(--surface-border);
+  box-shadow: var(--shadow);
+}
+
+.comment-header h2 {
+  margin: 0;
+}
+
+.comment-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.comment-list {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.comment-item {
+  padding: 1rem 1.1rem;
+  border-radius: 18px;
+  background: rgba(30, 41, 59, 0.72);
+  border: 1px solid rgba(148, 163, 184, 0.12);
+}
+
+.comment-item p {
+  margin: 0;
+}
+
+.comment-meta {
+  justify-content: space-between;
+  margin-bottom: 0.65rem;
+  color: var(--text-soft);
 }
 
 .create-form {
